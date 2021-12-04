@@ -12,12 +12,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool onLadderRange = false;
     private SpriteRenderer sprite;
     private PlayerShooting playerShooting;
+    private Animator anim;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         playerShooting = GetComponent<PlayerShooting>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -39,14 +41,19 @@ public class PlayerMovement : MonoBehaviour
         {
             sprite.flipX = false;
             playerShooting.projectileObj.direction = 1;
+            anim.SetBool("isRunning", true);
         }
         else if(x < 0)
         {
             playerShooting.projectileObj.direction = -1;
             sprite.flipX = true;
+            anim.SetBool("isRunning", true);
         }
+        else
+        {
+            anim.SetBool("isRunning", false);
+        }  
         transform.Translate(new Vector2(xSpeed, 0));
-
     }
 
     void Jump()
