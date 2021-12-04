@@ -6,10 +6,12 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float speed = 8f;
     SpriteRenderer sprite;
+    PlayerShooting player;
 
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        player = FindObjectOfType<PlayerShooting>();
     }
 
     void Update()
@@ -23,6 +25,16 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.tag == "Gray")
         {
             otherSprite.color = sprite.color;
+            player.projectileLaunched = false;
+            Destroy(this.gameObject);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "GameArea")
+        {
+            player.projectileLaunched = false;
             Destroy(this.gameObject);
         }
     }

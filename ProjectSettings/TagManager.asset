@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Grey
   - Black
+  - Gray
+  - GameArea
   layers:
   - Default
   - TransparentFX

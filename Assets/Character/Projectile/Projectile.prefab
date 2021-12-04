@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3816022354298164916}
   - component: {fileID: 3816022354298164914}
   - component: {fileID: 1426091299}
+  - component: {fileID: 4946267438283308923}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.60784316, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,3 +113,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ecaf9ca201e6c4bad13d7d8be71122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 8
+--- !u!50 &4946267438283308923
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3816022354298164917}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
