@@ -8,6 +8,7 @@ TagManager:
   - Gray
   - GameArea
   - Ladder
+  - Platform
   layers:
   - Default
   - TransparentFX

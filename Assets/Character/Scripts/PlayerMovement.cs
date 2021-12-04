@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce;
     private Rigidbody2D body;
     public bool canJump = false;
+    [SerializeField] private bool onLadderRange = false;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Move();
+        Climb();
     }
 
     void FixedUpdate()
@@ -28,9 +30,9 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
-        float Xspeed = x * speed * Time.deltaTime;
+        float xSpeed = x * speed * Time.deltaTime;
 
-        transform.Translate(new Vector2(Xspeed, 0));
+        transform.Translate(new Vector2(xSpeed, 0));
 
     }
 
@@ -48,7 +50,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Climb()
     {
-        
+        if (onLadderRange is true)
+        {
+            canJump = false;
+            float y = Input.GetAxisRaw("Vertical");
+            float ySpeed = y * speed * Time.deltaTime;
+            body.gravityScale = 0;
+
+            transform.Translate(new Vector2(0, ySpeed));
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -59,6 +69,27 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionExit2D(Collision2D other)
     {
         canJump = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Ladder")
+        {
+            onLadderRange = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Ladder")
+        {
+            onLadderRange = false;
+            body.gravityScale = 8;
+            if (canJump is false)
+            {
+                canJump = true;
+            }
+        }
     }
 
 }

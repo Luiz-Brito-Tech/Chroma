@@ -15,7 +15,7 @@ public class Ladder : MonoBehaviour
 
     void Rise()
     {
-        if (playerInRange is true && Input.GetMouseButtonDown(1) && uses < 1)
+        if (playerInRange is true && Input.GetMouseButtonDown(1) && uses < 1 && activated is false)
         {
             uses++;
             activated = true;
