@@ -10,8 +10,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     public bool canJump = false;
 
-
-
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -46,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
                 body.AddForce(new Vector2(0, force), ForceMode2D.Impulse);
             }
         }
+    }
+
+    void Climb()
+    {
+        
     }
 
     void OnCollisionEnter2D(Collision2D other)

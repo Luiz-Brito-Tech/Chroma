@@ -4,14 +4,39 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D other)
+    [SerializeField] private bool playerInRange = false;
+    [SerializeField] private bool activated = false;
+    private int uses = 0;
+
+    void Update()
     {
-        if (other.gameObject.tag == "Player")
+        Rise();
+    }
+
+    void Rise()
+    {
+        if (playerInRange is true && Input.GetMouseButtonDown(1) && uses < 1)
         {
-            if (Input.GetMouseButtonDown(1))
-            {
-                transform.Translate(new Vector2(0, 5 * Time.deltaTime));
-            }
+            uses++;
+            activated = true;
+            transform.Translate(new Vector2(0, 200 * Time.deltaTime));
         }
     }
+
+    void OnTriggerEnter2D(Collider2D player)
+    {
+        if (player.gameObject.tag == "Player")
+        {
+            playerInRange = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D player)
+    {
+        if (player.gameObject.tag == "Player")
+        {
+            playerInRange = false;
+        }
+    }
+
 }
