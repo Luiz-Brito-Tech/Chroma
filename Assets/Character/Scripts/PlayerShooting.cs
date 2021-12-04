@@ -9,7 +9,7 @@ public class PlayerShooting : MonoBehaviour
     public bool projectileLaunched = false;
     public bool canShoot = false;
     SpriteRenderer sprite;
-    Projectile projectileObj;
+    public Projectile projectileObj;
     SpriteRenderer projectileSprite;
 
     void Start()

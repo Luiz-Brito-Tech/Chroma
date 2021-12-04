@@ -10,10 +10,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     public bool canJump = false;
     [SerializeField] private bool onLadderRange = false;
+    private SpriteRenderer sprite;
+    private PlayerShooting playerShooting;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        playerShooting = GetComponent<PlayerShooting>();
     }
 
     void Update()
@@ -31,7 +35,16 @@ public class PlayerMovement : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal");
         float xSpeed = x * speed * Time.deltaTime;
-
+        if(x > 0)
+        {
+            sprite.flipX = false;
+            playerShooting.projectileObj.direction = 1;
+        }
+        else if(x < 0)
+        {
+            playerShooting.projectileObj.direction = -1;
+            sprite.flipX = true;
+        }
         transform.Translate(new Vector2(xSpeed, 0));
 
     }
@@ -50,32 +63,54 @@ public class PlayerMovement : MonoBehaviour
 
     void Climb()
     {
-        if (onLadderRange is true)
+        if (onLadderRange is true && FindObjectOfType<Ladder>().ladderActivated is true)
         {
-            canJump = false;
             float y = Input.GetAxisRaw("Vertical");
             float ySpeed = y * speed * Time.deltaTime;
-            body.gravityScale = 0;
-
+            
             transform.Translate(new Vector2(0, ySpeed));
         }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        canJump = true;
+        if (other.gameObject.tag == "Platform" || other.gameObject.tag == "Black")
+        {
+            canJump = true;
+        }
     }
 
     void OnCollisionExit2D(Collision2D other)
     {
-        canJump = false;
+        if (other.gameObject.tag == "Platform" || other.gameObject.tag == "Black" || onLadderRange is false)
+        {
+            canJump = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Ladder")
         {
-            onLadderRange = true;
+            if (other.GetComponent<Ladder>().ladderActivated is true)
+            {
+                canJump = false;
+                onLadderRange = true;
+                body.gravityScale = 0;
+            }
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Ladder")
+        {
+            if (other.GetComponent<Ladder>().ladderActivated is true)
+            {
+                canJump = false;
+                onLadderRange = true;
+                body.gravityScale = 0;
+            }
         }
     }
 
@@ -85,10 +120,6 @@ public class PlayerMovement : MonoBehaviour
         {
             onLadderRange = false;
             body.gravityScale = 8;
-            if (canJump is false)
-            {
-                canJump = true;
-            }
         }
     }
 

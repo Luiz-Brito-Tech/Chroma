@@ -335,6 +335,30 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!1 &1498895343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3171550579586934348, guid: 184d598cb3338143b971153f4f66383b, type: 3}
+  m_PrefabInstance: {fileID: 3171550578356647331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1498895344
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498895343}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8fcc39f6b6fc317de885041b89490cc0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1501942702
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3171550579586934353, guid: 184d598cb3338143b971153f4f66383b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.56
+      value: -2.36
       objectReference: {fileID: 0}
     - target: {fileID: 3171550579586934353, guid: 184d598cb3338143b971153f4f66383b, type: 3}
       propertyPath: m_LocalPosition.y

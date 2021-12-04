@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float speed = 8f;
     SpriteRenderer sprite;
     PlayerShooting player;
+    public int direction;
 
     void Start()
     {
@@ -16,7 +17,7 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-       transform.Translate(new Vector2(speed * Time.deltaTime, 0)); 
+       transform.Translate(new Vector2(speed * Time.deltaTime * direction, 0)); 
     }
 
     void OnTriggerEnter2D(Collider2D other)

@@ -5,8 +5,14 @@ using UnityEngine;
 public class Ladder : MonoBehaviour
 {
     [SerializeField] private bool playerInRange = false;
-    [SerializeField] private bool activated = false;
+    public bool ladderActivated = false;
     private int uses = 0;
+    [SerializeField] private Animator anim;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -15,11 +21,11 @@ public class Ladder : MonoBehaviour
 
     void Rise()
     {
-        if (playerInRange is true && Input.GetMouseButtonDown(1) && uses < 1 && activated is false)
+        if (playerInRange is true && Input.GetMouseButtonDown(1) && uses < 1 && ladderActivated is false)
         {
             uses++;
-            activated = true;
-            transform.Translate(new Vector2(0, 200 * Time.deltaTime));
+            ladderActivated = true;
+            anim.SetBool("Activated", true);
         }
     }
 
