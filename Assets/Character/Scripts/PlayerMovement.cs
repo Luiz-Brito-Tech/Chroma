@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
         Jump();
     }
 
+    void FixedUpdate()
+    {
+        
+    }
+
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
