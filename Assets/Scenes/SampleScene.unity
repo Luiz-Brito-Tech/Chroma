@@ -787,10 +787,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ladder
       objectReference: {fileID: 0}
-    - target: {fileID: 3171550579586934348, guid: 184d598cb3338143b971153f4f66383b, type: 3}
-      propertyPath: m_TagString
-      value: Ladder
-      objectReference: {fileID: 0}
     - target: {fileID: 3171550579586934353, guid: 184d598cb3338143b971153f4f66383b, type: 3}
       propertyPath: m_RootOrder
       value: 8

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3171550579586934352}
   m_Layer: 0
   m_Name: Ladder
-  m_TagString: Untagged
+  m_TagString: Ladder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,3 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30954a772440f855ab1c23de2fff3777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInRange: 0
+  activated: 0
