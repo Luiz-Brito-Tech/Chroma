@@ -6,10 +6,12 @@ public class PlayerCollision : MonoBehaviour
 {
 
     SpriteRenderer sprite;
+    PlayerMovement player;
 
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        player = FindObjectOfType<PlayerMovement>();
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -19,6 +21,7 @@ public class PlayerCollision : MonoBehaviour
         {
             if (otherSprite.color != sprite.color)
             {
+                player.canJump = false;
                 other.gameObject.GetComponent<Collider2D>().isTrigger = true;
             }
         }

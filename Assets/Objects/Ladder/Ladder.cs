@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Ladder : MonoBehaviour
+{
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                transform.Translate(new Vector2(0, 5 * Time.deltaTime));
+            }
+        }
+    }
+}

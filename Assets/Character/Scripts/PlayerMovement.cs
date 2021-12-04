@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
     private Rigidbody2D body;
+    public bool canJump = false;
+
 
 
     void Start()
@@ -18,12 +20,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Move();
-        Jump();
     }
 
     void FixedUpdate()
     {
-        
+        Jump();
     }
 
     void Move()
@@ -37,12 +38,24 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        float force = jumpForce * Time.deltaTime;
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (canJump == true)
         {
-            body.AddForce(new Vector2(0, force), ForceMode2D.Impulse);
+            float force = jumpForce * Time.deltaTime;
+            if (Input.GetKey(KeyCode.Space))
+            {
+                body.AddForce(new Vector2(0, force), ForceMode2D.Impulse);
+            }
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        canJump = true;
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        canJump = false;
     }
 
 }
