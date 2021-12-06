@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private float speed = 8f;
+    private float speed = 16f;
     SpriteRenderer sprite;
     PlayerShooting player;
     public int direction;
