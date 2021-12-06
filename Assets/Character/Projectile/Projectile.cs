@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         player = FindObjectOfType<PlayerShooting>();
+        Debug.Log(Color.gray);
     }
 
     void Update()
@@ -35,7 +36,7 @@ public class Projectile : MonoBehaviour
             else
             {
                 other.isTrigger = true;
-                otherSprite.color = new Color(90, 90, 90, 255f);
+                otherSprite.color = Color.gray;
                 Destroy(this.gameObject);
             }
         }
