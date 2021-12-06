@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         Climb();
+        anim.SetBool("isJumping", !canJump);
+        anim.SetBool("isClimbing", onLadderRange);
     }
 
     void FixedUpdate()
@@ -74,7 +76,14 @@ public class PlayerMovement : MonoBehaviour
         {
             float y = Input.GetAxisRaw("Vertical");
             float ySpeed = y * speed * Time.deltaTime;
-            
+            if(y != 0)
+            {
+                anim.SetBool("isRlyClimbing", true);
+            }
+            else
+            {
+                anim.SetBool("isRlyClimbing", false);
+            }  
             transform.Translate(new Vector2(0, ySpeed));
         }
     }

@@ -25,9 +25,19 @@ public class Projectile : MonoBehaviour
         SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>();
         if (other.gameObject.tag == "Gray")
         {
-            otherSprite.color = sprite.color;
-            player.projectileLaunched = false;
-            Destroy(this.gameObject);
+            if (otherSprite.color != sprite.color){
+                other.isTrigger = false;
+                otherSprite.color = sprite.color;
+                player.projectileLaunched = false;
+                Destroy(this.gameObject);
+            }
+
+            else
+            {
+                other.isTrigger = true;
+                otherSprite.color = new Color(90, 90, 90, 255f);
+                Destroy(this.gameObject);
+            }
         }
     }
 
