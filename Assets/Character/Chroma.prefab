@@ -125,6 +125,9 @@ MonoBehaviour:
   jumpForce: 500
   canJump: 0
   onLadderRange: 0
+  onMovingPlatform: 0
+  movingPlatformActivated: 0
+  deathMark: {fileID: 0}
 --- !u!114 &1699044061
 MonoBehaviour:
   m_ObjectHideFlags: 0

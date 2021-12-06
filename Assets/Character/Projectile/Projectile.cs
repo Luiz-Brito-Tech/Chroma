@@ -8,12 +8,13 @@ public class Projectile : MonoBehaviour
     SpriteRenderer sprite;
     PlayerShooting player;
     public int direction;
-    public bool charged = false;
+    public bool charged;
 
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         player = FindObjectOfType<PlayerShooting>();
+        charged = true;
     }
 
     void Update()

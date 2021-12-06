@@ -18,16 +18,18 @@ public class Button : MonoBehaviour
         SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>();
         if (other.gameObject.tag == "Projectile")
         {
-            projectile = FindObjectOfType<Projectile>();
-            if (projectile.charged is true)
+            if (other.GetComponent<Projectile>().charged is true && sprite.color == otherSprite.color)
             {
-                if (sprite.color == otherSprite.color)
+                GameObject[] grays = GameObject.FindGameObjectsWithTag("Gray");
+                foreach(GameObject gray in grays)
                 {
-                    GameObject[] greys = GameObject.FindGameObjectsWithTag("Grey");
-                    foreach(var grey in greys)
-                    {
-                        grey.GetComponent<SpriteRenderer>().color = sprite.color;
-                    }
+                    gray.GetComponent<SpriteRenderer>().color = otherSprite.color;
+                }
+                GameObject[] plats = GameObject.FindGameObjectsWithTag("Platform");
+                foreach(GameObject plat in plats)
+                {
+                    plat.GetComponent<SpriteRenderer>().color = otherSprite.color;
+                    plat.GetComponent<Collider2D>().isTrigger = false;
                 }
             }
         }
