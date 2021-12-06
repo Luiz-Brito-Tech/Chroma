@@ -9,6 +9,8 @@ TagManager:
   - GameArea
   - Ladder
   - Platform
+  - MovingPlatform
+  - Projectile
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,9 +11,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     public bool canJump = false;
     [SerializeField] private bool onLadderRange = false;
+    [SerializeField] private bool onMovingPlatform = false;
+    [SerializeField] private bool movingPlatformActivated = false;
     private SpriteRenderer sprite;
     private PlayerShooting playerShooting;
     private Animator anim;
+    [SerializeField] private Transform deathMark;
 
     void Start()
     {
@@ -24,10 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Move();
-        Climb();
-        anim.SetBool("isJumping", !canJump);
-        anim.SetBool("isClimbing", onLadderRange);
+        GameFunctions();
     }
 
     void FixedUpdate()
@@ -70,6 +71,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void MovePlatform()
+    {
+        if (onMovingPlatform is true && movingPlatformActivated is true)
+        {
+            float y = Input.GetAxisRaw("Vertical");
+            float ySpeed = y * speed * Time.deltaTime;
+            GameObject platform = GameObject.FindWithTag("MovingPlatform");
+            transform.Translate(new Vector2(0, ySpeed));
+            platform.transform.Translate(new Vector2(0, ySpeed));
+        }
+    }
+
     void Climb()
     {
         if (onLadderRange is true && FindObjectOfType<Ladder>().ladderActivated is true)
@@ -88,19 +101,41 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void DetectFall()
+    {
+        if (transform.position.y < deathMark.position.y)
+        {
+            DeathOrRestart();
+        }
+    }
+
+    void SceneInput()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            DeathOrRestart();
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Platform" || other.gameObject.tag == "Black")
+        if (other.gameObject.tag == "Platform" || other.gameObject.tag == "Black" || other.gameObject.tag == "MovingPlatform")
         {
             canJump = true;
+            if (other.gameObject.tag == "MovingPlatform")
+            {
+                onMovingPlatform = true;
+            }
         }
     }
 
     void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Platform" || other.gameObject.tag == "Black" || onLadderRange is false)
+        if (other.gameObject.tag == "Platform" || other.gameObject.tag == "Black" || 
+        other.gameObject.tag ==  "MovingPlatform" || onLadderRange is false)
         {
             canJump = false;
+            onMovingPlatform = false;
         }
     }
 
@@ -137,6 +172,22 @@ public class PlayerMovement : MonoBehaviour
             onLadderRange = false;
             body.gravityScale = 8;
         }
+    }
+
+    void DeathOrRestart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void GameFunctions()
+    {
+        Move();
+        Climb();
+        MovePlatform();
+        DetectFall();
+        SceneInput();
+        anim.SetBool("isJumping", !canJump);
+        anim.SetBool("isClimbing", onLadderRange);
     }
 
 }
