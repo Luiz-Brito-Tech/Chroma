@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Door : MonoBehaviour
     {
         if (playerInRange is true && Input.GetMouseButtonDown(1))
         {
-            print("Level complete!");
+            SceneManager.LoadScene("EndScreen");
         }
     }
 
