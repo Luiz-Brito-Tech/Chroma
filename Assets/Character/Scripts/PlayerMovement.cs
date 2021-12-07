@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     public bool canJump = false;
     [SerializeField] private bool onLadderRange = false;
     [SerializeField] private bool onMovingPlatform = false;
-    [SerializeField] private bool movingPlatformActivated = false;
     private SpriteRenderer sprite;
     private PlayerShooting playerShooting;
     private Animator anim;
@@ -73,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlatform()
     {
-        if (onMovingPlatform is true && movingPlatformActivated is true)
+        if (onMovingPlatform is true)
         {
             float y = Input.GetAxisRaw("Vertical");
             float ySpeed = y * speed * Time.deltaTime;

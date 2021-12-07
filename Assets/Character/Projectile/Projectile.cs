@@ -14,7 +14,6 @@ public class Projectile : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         player = FindObjectOfType<PlayerShooting>();
-        charged = true;
     }
 
     void Update()
@@ -27,19 +26,18 @@ public class Projectile : MonoBehaviour
         SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>();
         if (other.gameObject.tag == "Gray")
         {
-            if (otherSprite.color != sprite.color){
+            if (otherSprite.color != sprite.color)
+            {
                 other.isTrigger = false;
                 otherSprite.color = sprite.color;
                 player.projectileLaunched = false;
-                Destroy(this.gameObject);
             }
-
             else
             {
                 other.isTrigger = true;
                 otherSprite.color = Color.gray;
-                Destroy(this.gameObject);
             }
+            Destroy(this.gameObject);
         }
     }
 

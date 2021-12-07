@@ -126,7 +126,6 @@ MonoBehaviour:
   canJump: 0
   onLadderRange: 0
   onMovingPlatform: 0
-  movingPlatformActivated: 0
   deathMark: {fileID: 0}
 --- !u!114 &1699044061
 MonoBehaviour:
@@ -156,6 +155,7 @@ MonoBehaviour:
   projectile: {fileID: 1426091299, guid: af6d9565308bac491bb11e0109a5a806, type: 3}
   projectileLaunched: 0
   canShoot: 0
+  projectileCharged: 0
   projectileObj: {fileID: 0}
 --- !u!61 &1699044063
 BoxCollider2D:

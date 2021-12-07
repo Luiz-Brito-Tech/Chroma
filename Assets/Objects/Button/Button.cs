@@ -18,7 +18,7 @@ public class Button : MonoBehaviour
         SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>();
         if (other.gameObject.tag == "Projectile")
         {
-            if (other.GetComponent<Projectile>().charged is true && sprite.color == otherSprite.color)
+            if (other.GetComponent<Projectile>().charged is true)
             {
                 GameObject[] grays = GameObject.FindGameObjectsWithTag("Gray");
                 foreach(GameObject gray in grays)
