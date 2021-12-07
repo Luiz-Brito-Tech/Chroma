@@ -16,6 +16,7 @@ public class PlayerShooting : MonoBehaviour
     private Animator anim;
     private Rigidbody2D body;
     private PlayerMovement playerMovement;
+    [SerializeField] private ParticleSystem particleSystem;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class PlayerShooting : MonoBehaviour
     void Update()
     {
         Shoot();
+        particleSystem.startColor = sprite.color;
     }
 
     void Shoot()
@@ -36,7 +38,7 @@ public class PlayerShooting : MonoBehaviour
         if(canShoot is true && projectileLaunched is false)
         {
             SetUpProjectile();
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && playerMovement.onMovingPlatform is true)
             {
                 charging = true;
                 StartCoroutine(WaitToCharge());
@@ -54,6 +56,7 @@ public class PlayerShooting : MonoBehaviour
 
     IEnumerator ShootEnum()
     {
+        particleSystem.gameObject.SetActive(false);
         body.constraints = RigidbodyConstraints2D.FreezePosition;
         playerMovement.speed = 0f;
         anim.SetBool("Shooting", true);
@@ -73,9 +76,11 @@ public class PlayerShooting : MonoBehaviour
 
     IEnumerator WaitToCharge()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         if (charging)
         {
+            particleSystem.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1f);
             projectileCharged = true;
         }
     }

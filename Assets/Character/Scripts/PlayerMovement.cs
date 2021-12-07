@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     public bool canJump = false;
     [SerializeField] private bool onLadderRange = false;
-    [SerializeField] private bool onMovingPlatform = false;
+    public bool onMovingPlatform = false;
     private SpriteRenderer sprite;
     private PlayerShooting playerShooting;
     private Animator anim;

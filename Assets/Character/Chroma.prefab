@@ -156,6 +156,7 @@ MonoBehaviour:
   projectileLaunched: 0
   canShoot: 0
   projectileCharged: 0
+  charging: 0
   projectileObj: {fileID: 0}
 --- !u!61 &1699044063
 BoxCollider2D:
